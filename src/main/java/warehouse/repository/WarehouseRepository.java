@@ -1,13 +1,16 @@
 package warehouse.repository;
 
-import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import warehouse.model.Warehouse;
 
-import warehouse.model.ProductData;
+public interface WarehouseRepository extends MongoRepository<Warehouse, String> {
 
-public interface WarehouseRepository extends MongoRepository<ProductData, String> {
+//    public ProductData findByProductID(String productID);
 
-    public ProductData findByProductID(String productID);
-    public List<ProductData> findByWarehouseID(String warehouseID);
 
- }
+    // Findet ein komplettes Lager-Dokument anhand der Geschäfts-ID (z.B. "WH-01")
+    Warehouse findByWarehouseID(String warehouseID);
+
+    // Falls du Lager nach Stadt suchen willst (optional für Berichte)
+//    List<Warehouse> findByCity(String city);
+}
